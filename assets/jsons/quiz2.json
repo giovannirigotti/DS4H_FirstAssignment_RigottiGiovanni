@@ -1,0 +1,58 @@
+{
+    "quiz": {
+      "title": "Cinema and TV Shows Quiz",
+      "questions": [
+        {
+          "question": "Which actor played the character Tony Stark in the Marvel Cinematic Universe?",
+          "options": ["Chris Evans", "Chris Hemsworth", "Robert Downey Jr.", "Mark Ruffalo"],
+          "correct_answer": "Robert Downey Jr."
+        },
+        {
+          "question": "In the TV series 'Friends', what is the name of Ross and Monica's dog when they were kids?",
+          "options": ["Buddy", "Joey", "Chandler", "Marcel"],
+          "correct_answer": "Chandler"
+        },
+        {
+          "question": "Who directed the film 'The Shawshank Redemption'?",
+          "options": ["Christopher Nolan", "Frank Darabont", "Steven Spielberg", "Quentin Tarantino"],
+          "correct_answer": "Frank Darabont"
+        },
+        {
+          "question": "Which TV show is set in the fictional town of Hawkins?",
+          "options": ["Stranger Things", "The X-Files", "Twin Peaks", "Supernatural"],
+          "correct_answer": "Stranger Things"
+        },
+        {
+          "question": "In the movie 'The Dark Knight', who played the role of the Joker?",
+          "options": ["Heath Ledger", "Joaquin Phoenix", "Jack Nicholson", "Cesar Romero"],
+          "correct_answer": "Heath Ledger"
+        },
+        {
+          "question": "What is the name of the dragon mother of dragons in 'Game of Thrones'?",
+          "options": ["Drogon", "Viserion", "Rhaegal", "Dany"],
+          "correct_answer": "Drogon"
+        },
+        {
+          "question": "Which film won the Academy Award for Best Animated Feature in 2018?",
+          "options": ["Coco", "Zootopia", "Moana", "Frozen"],
+          "correct_answer": "Coco"
+        },
+        {
+          "question": "Who played the iconic character of James Bond in 'Casino Royale'?",
+          "options": ["Daniel Craig", "Pierce Brosnan", "Sean Connery", "Roger Moore"],
+          "correct_answer": "Daniel Craig"
+        },
+        {
+          "question": "What is the name of the high school in the TV series 'Buffy the Vampire Slayer'?",
+          "options": ["Sunnydale High", "Ridgemont High", "Hillcrest High", "Waverly High"],
+          "correct_answer": "Sunnydale High"
+        },
+        {
+          "question": "Which film won the Best Picture Oscar in 2021?",
+          "options": ["Nomadland", "The Trial of the Chicago 7", "Minari", "Promising Young Woman"],
+          "correct_answer": "Nomadland"
+        }
+      ]
+    }
+  }
+  

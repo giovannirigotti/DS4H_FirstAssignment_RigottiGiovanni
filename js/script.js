@@ -366,7 +366,7 @@ function play(){
 
     // Charging the image
     let img = document.querySelector("#q_img");
-    let img_src = "assets/imgs/" + level + "/" + actual_question.id + ".jpg"; 
+    let img_src = "./assets/imgs/" + level + "/" + actual_question.id + ".jpg"; 
     img.src = img_src;
     
     // Create the question div based on question type and the Question text

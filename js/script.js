@@ -324,7 +324,7 @@ function startQuiz(event) {
       }
 
       b_points.textContent = points + " points";
-      i_question.textContent = question_number + "/10";
+      i_question.textContent = (question_number+1) + "/10";
 
       // Start the game (initialize environment variables)
       //question_number = 1;
@@ -534,7 +534,7 @@ function checkQuestion(){
     question_number = question_number + 1;
     
     b_points.textContent = points + " points";
-    i_question.textContent = question_number + "/10";
+    i_question.textContent = (question_number+1) + "/10";
 
     play();
 

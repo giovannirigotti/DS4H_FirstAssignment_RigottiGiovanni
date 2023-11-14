@@ -211,6 +211,25 @@ let level3Questions = [
     }
   ];
 
+// ONLOAD
+window.onload = init;
+
+function init(){
+    // Hide the status div to start the quiz
+    let status_div = document.querySelector("#status");
+    status_div.style.display = "none";
+
+    // Hide the core div to start the quiz
+    let core_div = document.querySelector("#core");
+    core_div.style.display = "none";
+}
+
+// POINTS & QUESTION COUNTER & QUESTIONS IN USE
+var points = 0;
+var question_number = 0;
+var question_array = null;
+var level = "";
+
 // UTILS
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -218,6 +237,32 @@ function shuffleArray(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
+}
+
+function tempAlert(msg, duration, success) {
+    var el = document.createElement("div");
+    el.style.position = "fixed";
+    el.style.top = "50%";
+    el.style.left = "50%";
+    el.style.transform = "translate(-50%, -50%)";
+    el.style.padding = "20px";
+    el.style.borderRadius = "10px";
+    el.style.textAlign = "center";
+
+    // Impostazione del colore di sfondo in base al parametro success
+    if (success) {
+        el.style.backgroundColor = "rgba(0, 255, 0, 0.9)"; // Verde
+    } else {
+        el.style.backgroundColor = "rgba(255, 0, 0, 0.9)"; // Rosso
+    }
+
+    el.innerHTML = msg;
+
+    setTimeout(function () {
+        el.parentNode.removeChild(el);
+    }, duration);
+
+    document.body.appendChild(el);
 }
 
 // RULES MANAGEMENT
@@ -230,43 +275,94 @@ function closeRulesModal() {
 }
 
 function startQuiz(event) {
+    // POINT RESET
+    points = 0;
 
     let questions = null;
-    let level = null;
+
+    // SET UP INTERFACE
+    let quiz_info = document.querySelector("#quiz_info");
+    let b_points = document.querySelector("#b_points");
+    let i_question = document.querySelector("#i_question");
+    
+    // Show element begin div        
+    let status_div = document.querySelector("#status");
+    status_div.style.display = "block";
+
+    // Show element begin div        
+    let core_div = document.querySelector("#core");
+    core_div.style.display = "block";
+    
+    // Hide the begin div to start the quiz
+    let begin_div = document.querySelector("#begin");
+    begin_div.style.display = "none";
 
     // Chose the difficulty based on the button pressed
     // also selecting the correct set of questions taken in a random order
     switch (event.target.id) {
         case 'easy': //EASY
             console.log("Starting easy quiz!");
+            quiz_info.textContent = "Easy quiz"
             questions = shuffleArray(level1Questions);
             level = "level1";
             break;
         case 'medium': //MEDIUM
-            console.log("Starting medium quiz!");
+            console.log("Starting medium quiz!");            
+            quiz_info.textContent = "Medium quiz"
             questions = shuffleArray(level2Questions);
             level = "level2";
             break;
         case 'hard': //HARD     
             console.log("Starting hard quiz!");
+            quiz_info.textContent = "Hard quiz"
             questions = shuffleArray(level3Questions);
             level = "level3";
             break;
         default:
           alert("ERROR: not able to start the quiz.");
+          return;
       }
 
-      // Hide the begin div to start the quiz
-      let begin_div = document.querySelector("#begin");
-      begin_div.style.display = "none";
+      b_points.textContent = points + " points";
+      i_question.textContent = question_number + "/10";
 
-      // Start the game
-      play(1, questions, level);
+      // Start the game (initialize environment variables)
+      //question_number = 1;
+      question_array = questions;
+
+      play();
 }
 
-function play(question_number, question_array, level){
+function play(){
 
+    console.log(question_number);
     let actual_question = question_array[question_number];
+
+    if(question_number == 10){
+        // reset
+        // Show element begin div        
+        let begin_div = document.querySelector("#begin");
+        begin_div.style.display = "block";
+        
+        let b_points = document.querySelector("#b_points");    
+        let i_question = document.querySelector("#i_question");
+        let quiz_info = document.querySelector("#quiz_info");
+
+        quiz_info.textContent = "Quiz Finished."
+        b_points.textContent = points + " total points";
+        i_question.textContent = "Select a game mode to restart.";
+
+        points = 0;
+        question_number = 0;
+        question_array = null;
+        level = "";
+
+        // Hide the core div show the results the quiz
+        let core_div = document.querySelector("#core");
+        core_div.style.display = "none";
+
+        return;
+    }
 
     // Charging the image
     let img = document.querySelector("#q_img");
@@ -292,15 +388,14 @@ function play(question_number, question_array, level){
             break;
         default:
           alert("ERROR: not able to start the quiz.");
+          return;
     }
 
     question_paragraph.textContent = question_text + actual_question.question; 
 
-    // TODO : check logic
+    // Update the class of the button as flag to manage the check logic
     let check_button = document.querySelector("#check");
-    
-    // TODO : new question / end questions LOGIC
-
+    check_button.className = actual_question.type;
 }
 
 function createSingleChoice(options){
@@ -342,12 +437,12 @@ function createTrueFalse(){
 
     var tmp_button_true = document.createElement("button");
     tmp_button_true.textContent = "True";
-    tmp_button_true.id = "True";
+    tmp_button_true.id = "true";
     tmp_button_true.setAttribute('onclick', "manageTrueFalse(event)");
     
     var tmp_button_false = document.createElement("button");
-    tmp_button_false.textContent = "True";
-    tmp_button_false.id = "True";
+    tmp_button_false.textContent = "False";
+    tmp_button_false.id = "false";
     tmp_button_false.setAttribute('onclick', "manageTrueFalse(event)");
 
     option_div.append(tmp_button_true);
@@ -374,6 +469,75 @@ function manageMultipleChoice(event){
 function manageTrueFalse(event){
     let choice = document.querySelector("#choice");
     choice.textContent = event.target.id;
+}
+
+function checkQuestion(){
+    let type = document.querySelector("#check").className;
+    let choice_text = document.querySelector("#choice").textContent;
+    let actual_question = question_array[question_number];
+    let answer = actual_question.correct_answer;
+
+    // CONTROL ANSWER PRESENCE
+    if(choice_text == "" || choice_text == null){    
+        console.log("ERROR: select your answer to proceed!"); 
+        alert("ERROR: select your answer to proceed!");
+        return;
+    }
+    
+    switch (type) {
+        case 'singleChoice':
+            if(choice_text == answer){
+                points += 1;
+                tempAlert("YOUR ANSWER IS RIGHT", 2000, true);
+            }else{
+                let opt = "THE RIGHT ANSWER WAS: " + answer;                
+                tempAlert(opt, 4000, false);
+            }
+            break;
+        case 'multipleChoice':   
+            let answer_string = "";
+            answer.forEach(element => {
+                answer_string += element + "; "
+            });
+            if(choice_text == answer_string){
+                points += 1;
+                tempAlert("YOUR ANSWER IS RIGHT", 2000, true);
+            }else{
+                let opt = "THE RIGHT ANSWER WERE: " + answer_string;                
+                tempAlert(opt, 4000, false);
+            }
+            break;
+        case 'trueFalse':
+
+            if((choice_text == "true" && answer == true)||(choice_text == "false" && answer == false)){
+                points += 1;
+                tempAlert("YOUR ANSWER IS RIGHT", 2000, true);
+            }else{
+                let opt = "THE RIGHT ANSWER WAS: " + answer;                
+                tempAlert(opt, 4000, false);
+            }
+            break;
+        default:
+          alert("ERROR: not able to check the question.");
+          return;
+    }
+
+    // UPDATE INTERFACE    
+    let b_points = document.querySelector("#b_points");    
+    let i_question = document.querySelector("#i_question");    
+    let option_div = document.querySelector("#options");
+    let choice_p = document.querySelector("#choice");
+    let quiz_info = document.querySelector("#quiz_info");
+    
+    choice_p.textContent = "";
+    option_div.textContent = "";
+    question_number = question_number + 1;
+    
+    b_points.textContent = points + " points";
+    i_question.textContent = question_number + "/10";
+
+    play();
+
 }
 
 

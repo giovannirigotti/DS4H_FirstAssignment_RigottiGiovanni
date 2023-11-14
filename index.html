@@ -27,7 +27,11 @@
             <button id="medium" onclick="startQuiz(event)">Medium Difficulty Question</button>
             <button id="hard" onclick="startQuiz(event)">Hard Difficulty Question</button>
         </div>
-        <div id="core">
+        <div id="status">
+            <p id="quiz_info"></p><p id="b_points"></p><p id="i_question"></p>
+        </div>
+        <div id="core">    
+            
             <img id="q_img" src="" alt="">
             <p id="question"></p>
             <div id="options">
@@ -35,7 +39,7 @@
             </div>
             <p>Your answer</p>
             <p id="choice"></p>
-            <button id="check" class="tmp">Check</button> <!--TODO : START AGAIN -->
+            <button id="check" class="tmp" onclick="checkQuestion()">Check</button> <!--TODO : START AGAIN -->
         </div>
     </body>
 </html>

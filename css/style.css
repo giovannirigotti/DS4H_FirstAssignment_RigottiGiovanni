@@ -54,7 +54,7 @@ button {
     margin: 5px;
 }
 
-#core {
+#core, #status {
     max-width: 600px;
     margin: 20px auto;
     background-color: #fff;

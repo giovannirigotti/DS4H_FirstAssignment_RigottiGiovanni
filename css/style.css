@@ -17,7 +17,7 @@ body {
 #info_label {
     margin: 0;
     padding-top: 1%;
-    font-size: large;
+    font-size: medium;
     text-align: center;
 }
 
@@ -88,8 +88,8 @@ button {
 }
 
 #options {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 10px;
 }
 
@@ -120,8 +120,6 @@ div, img {
     background-color: rgba(255, 255, 255, 0.6); 
     padding: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    text-align: center;
 }
 
 #status p {
@@ -135,10 +133,10 @@ input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #004080;
-    border-radius: 5px;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #004080;
+    border-radius: 4px;
     outline: none;
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
@@ -152,7 +150,7 @@ input[type="checkbox"]:checked {
 
 input[type="checkbox"]::before {
     content: '\2713';
-    font-size: 16px;
+    font-size: 12px;
     color: #fff;
     position: absolute;
     top: 50%;

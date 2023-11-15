@@ -2,22 +2,23 @@
     <head>
         <title>First Assignment - Quiz Engine</title>
         <meta charset="utf-8">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <script src="js/script.js"></script>        
     </head>
     <body>
         <div id="info">
-            <p id="info_label">HI, Welcome to Cinema QUIZ - developed by Rigotti Giovanni</p>
-            <button id="rules" onclick="showRules()"><i class="fas fa-info-circle"></i></button>
+            <p id="info_label"><b>Welcome to Cinema QUIZ</b> - <i>developed by Rigotti Giovanni</i></p>
+            <button id="rules" onclick="showRules()">Rules <i class="fas fa-info-circle"></i></button>
             <!-- The Modal -->
             <div id="rulesModal">
                 <div class="modal-content">
                     <span id="closeModal" onclick="closeRulesModal()">&times;</span>
                     <h2>Quiz Rules</h2>
-                    <p>1. Answer all the questions.</p>
-                    <p>2. Choose the correct answer for each question.</p>
-                    <p>3. Have fun!</p>
+                    <p>1. Select the game mode.</p>
+                    <p>2. Give your answer for each question and press the 'check' button.</p>
+                    <p>3. Have fun! And play again.</p>
                 </div>
             </div>
         </div>
@@ -28,7 +29,7 @@
             <button id="hard" onclick="startQuiz(event)">Hard Difficulty Question</button>
         </div>
         <div id="status">
-            <p id="quiz_info"></p><p id="b_points"></p><p id="i_question"></p>
+            <h3 id="quiz_info"></h3><p id="b_points"></p><p id="i_question"></p>
         </div>
         <div id="core">    
             
@@ -37,7 +38,7 @@
             <div id="options">
 
             </div>
-            <p>Your answer</p>
+            <b>Your answer</b>
             <p id="choice"></p>
             <button id="check" class="tmp" onclick="checkQuestion()">Check</button> <!--TODO : START AGAIN -->
         </div>

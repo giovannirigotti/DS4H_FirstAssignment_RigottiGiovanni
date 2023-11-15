@@ -242,6 +242,7 @@ function shuffleArray(array) {
 function tempAlert(msg, duration, success) {
     var el = document.createElement("div");
     el.style.position = "fixed";
+    el.style.fontWeight = "bold";
     el.style.top = "50%";
     el.style.left = "50%";
     el.style.transform = "translate(-50%, -50%)";
@@ -251,9 +252,9 @@ function tempAlert(msg, duration, success) {
 
     // Impostazione del colore di sfondo in base al parametro success
     if (success) {
-        el.style.backgroundColor = "rgba(0, 255, 0, 0.9)"; // Verde
+        el.style.backgroundColor = "rgba(106, 195, 113, 0.9)"; // Verde
     } else {
-        el.style.backgroundColor = "rgba(255, 0, 0, 0.9)"; // Rosso
+        el.style.backgroundColor = "rgba(177, 96, 96, 0.9)"; // Rosso
     }
 
     el.innerHTML = msg;
@@ -538,10 +539,4 @@ function checkQuestion(){
 
     play();
 
-}
-
-
-
-  
-  
-  
+}  
